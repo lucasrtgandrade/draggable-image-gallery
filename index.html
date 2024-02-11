@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste De Carrosel</title>
+    <link rel="stylesheet" href="/styles.css">
+    <!-- <script src="script.js"></script> -->
+</head>
+<body>
+    <div class="grupo-carrosel">
+        <div class="principal carrosel">
+            <img class="imagem-destaque" src="/projeto-pingoo-desktop-03.jpg">
+        </div>
+        <div class="galeria-de-imagens" id="galeria-de-imagens">
+            <div class="secundaria carrosel">
+                <img class="imagem-apoio" src="/projeto-pingoo-desktop-16.jpg">
+            </div>
+            <div class="secundaria carrosel">
+                <img class="imagem-apoio" src="/projeto-pingoo-desktop-14.jpg">
+            </div>
+            <div class="secundaria carrosel">
+                <img class="imagem-apoio" src="/projeto-pingoo-desktop-20.jpg">
+            </div>
+            <div class="secundaria carrosel">
+                <img class="imagem-apoio" src="/projeto-pingoo-desktop-22.jpg">
+            </div>
+            <div class="secundaria carrosel">
+                <img class="imagem-apoio" src="/projeto-pingoo-desktop-09.jpg">
+            </div>
+            <div class="secundaria carrosel">
+                <img class="imagem-apoio" src="/projeto-pingoo-desktop-03.jpg">
+            </div>
+            <div class="secundaria carrosel">
+                <img class="imagem-apoio" src="/projeto-pingoo-desktop-29.jpg">
+            </div>
+        </div>
+    </div>
+    <script>
+        const galeria = document.getElementById('galeria-de-imagens');
+        let estaArrastando = false;
+        let posInicial = 0;
+        let scrollLeftStart = 0; // Corrected variable name and declaration
+
+        galeria.addEventListener('mousedown', (event) => {
+            estaArrastando = true;
+            posInicial = event.pageX - galeria.offsetLeft;
+            scrollLeftStart = galeria.scrollLeft; // Use the correct property here
+            galeria.style.cursor = 'grabbing';
+        });
+
+        galeria.addEventListener('mouseleave', () => {
+            estaArrastando = false;
+            galeria.style.cursor = 'grab';
+        });
+
+        galeria.addEventListener('mouseup', () => {
+            estaArrastando = false;
+            galeria.style.cursor = 'grab';
+        });
+
+        galeria.addEventListener('mousemove', (event) => {
+            if (!estaArrastando) return;
+            event.preventDefault();
+            const x = event.pageX - galeria.offsetLeft;
+            const walk = (x - posInicial) * 2; // The distance moved since the mousedown
+            galeria.scrollLeft = scrollLeftStart - walk; // Correctly update the scroll position
+        })
+
+        document.querySelectorAll('.galeria-de-imagens img').forEach(img => {
+        img.addEventListener('dragstart', (event) => {
+            event.preventDefault(); // Prevents the image from being dragged
+        });
+        });
+
+    </script>
+</body>
+</html>
