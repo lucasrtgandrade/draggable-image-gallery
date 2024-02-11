@@ -4,35 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teste De Carrosel</title>
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="styles.css">
     <!-- <script src="script.js"></script> -->
 </head>
 <body>
     <div class="grupo-carrosel">
-        <div class="principal carrosel">
-            <img class="imagem-destaque" src="/projeto-pingoo-desktop-03.jpg">
+        <div class="main-image-container">
+            <img id="main-image" class="imagem-destaque" src="projeto-pingoo-desktop-03.jpg">
         </div>
         <div class="galeria-de-imagens" id="galeria-de-imagens">
-            <div class="secundaria carrosel">
-                <img class="imagem-apoio" src="/projeto-pingoo-desktop-16.jpg">
+            <div class="secundaria">
+                <img class="imagem-apoio" src="projeto-pingoo-desktop-16.jpg">
             </div>
-            <div class="secundaria carrosel">
-                <img class="imagem-apoio" src="/projeto-pingoo-desktop-14.jpg">
+            <div class="secundaria">
+                <img class="imagem-apoio" src="projeto-pingoo-desktop-14.jpg">
             </div>
-            <div class="secundaria carrosel">
-                <img class="imagem-apoio" src="/projeto-pingoo-desktop-20.jpg">
+            <div class="secundaria">
+                <img class="imagem-apoio" src="projeto-pingoo-desktop-20.jpg">
             </div>
-            <div class="secundaria carrosel">
-                <img class="imagem-apoio" src="/projeto-pingoo-desktop-22.jpg">
+            <div class="secundaria">
+                <img class="imagem-apoio" src="projeto-pingoo-desktop-22.jpg">
             </div>
-            <div class="secundaria carrosel">
-                <img class="imagem-apoio" src="/projeto-pingoo-desktop-09.jpg">
+            <div class="secundaria">
+                <img class="imagem-apoio" src="projeto-pingoo-desktop-09.jpg">
             </div>
-            <div class="secundaria carrosel">
-                <img class="imagem-apoio" src="/projeto-pingoo-desktop-03.jpg">
+            <div class="secundaria">
+                <img class="imagem-apoio" src="projeto-pingoo-desktop-03.jpg">
             </div>
-            <div class="secundaria carrosel">
-                <img class="imagem-apoio" src="/projeto-pingoo-desktop-29.jpg">
+            <div class="secundaria">
+                <img class="imagem-apoio" src="projeto-pingoo-desktop-29.jpg">
             </div>
         </div>
     </div>
@@ -73,6 +73,21 @@
         });
         });
 
+                // Prevent default drag behavior for images
+                document.querySelectorAll('.galeria-de-imagens img').forEach(img => {
+            img.addEventListener('dragstart', (event) => {
+                event.preventDefault();
+            });
+        });
+
+        // Change the main image based on the clicked gallery image
+        document.querySelectorAll('.galeria-de-imagens .secundaria img').forEach(item => {
+            item.addEventListener('click', event => {
+                const mainImage = document.getElementById('main-image');
+                mainImage.src = event.target.src; // Change the main image source
+                mainImage.alt = event.target.alt; // Update the alt text as well
+            });
+        });
     </script>
 </body>
 </html>
