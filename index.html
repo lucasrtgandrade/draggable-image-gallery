@@ -14,7 +14,7 @@
         </div>
         <div class="galeria-de-imagens" id="galeria-de-imagens">
             <div class="secundaria">
-                <img class="imagem-apoio" src="projeto-pingoo-desktop-16.jpg">
+                <img class="imagem-apoio active" src="projeto-pingoo-desktop-16.jpg">
             </div>
             <div class="secundaria">
                 <img class="imagem-apoio" src="projeto-pingoo-desktop-14.jpg">
@@ -81,11 +81,18 @@
         });
 
         // Change the main image based on the clicked gallery image
-        document.querySelectorAll('.galeria-de-imagens .secundaria img').forEach(item => {
+            document.querySelectorAll('.galeria-de-imagens .secundaria img').forEach(item => {
             item.addEventListener('click', event => {
+                // Change the main image source
                 const mainImage = document.getElementById('main-image');
-                mainImage.src = event.target.src; // Change the main image source
-                mainImage.alt = event.target.alt; // Update the alt text as well
+                mainImage.src = event.target.src; // Update main image src
+                mainImage.alt = event.target.alt; // Update alt text (optional)
+
+                // Optional: Highlight the clicked image's container
+                document.querySelectorAll('.galeria-de-imagens .secundaria').forEach(container => {
+                    container.classList.remove('active'); // Remove 'active' class from all containers
+                });
+                event.target.parentElement.classList.add('active'); // Add 'active' class to clicked image's container
             });
         });
     </script>

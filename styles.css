@@ -35,9 +35,20 @@
     overflow: hidden;
     display: inline-block;
     border: 2px solid orange;
+    filter: grayscale(100%);
+}
+
+.secundaria.active {
+    outline: 2px solid yellow; /* Example style to indicate selection */
+    filter: none; /* If you decide to remove the filter on active, but it contradicts the initial requirement */
 }
 
 .imagem-apoio {
     object-fit: cover;
     height: 100%;
+
+}
+
+.secundaria:hover {
+    filter: grayscale(0%);
 }
